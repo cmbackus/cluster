@@ -3,33 +3,46 @@
 
 <head>
     <meta charset=utf-8>
-    <title>590/790 babylon.js test</title>
+    <title>cluster</title>
     <style>
         body {
             margin: 0;
+            width: 100%;
+            height: 100%;
         }
         
         canvas {
             width: 100%;
             height: 100%;
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
         }
+        /*
+        #texture {
+            display: none;
+        }*/
     </style>
+    <script id='vertex' type='x-shader/x-vertex'>
+        attribute vec2 aPosition; attribute vec2 aTextureCoord; varying vec2 vTexCoord; void main() { vTexCoord = aTextureCoord; gl_Position = vec4( aPosition, 0, 1 ); }
+    </script>
+    <script id='fragment' type='x-shader/x-fragment'>
+        precision mediump float; varying vec2 vTexCoord; uniform sampler2D uSampler; void main() { gl_FragColor = texture2D(uSampler,vec2(vTexCoord.s, vTexCoord.t)); }
+    </script>
 </head>
 
 <body>
-    <canvas id='babylonCanvas'></canvas>
-    <canvas id='mainCanvas'></canvas>
+    <canvas id='texture'></canvas>
+
+    <canvas id='gl'></canvas>
 
 
     <script src="./node_modules/babylonjs/babylon.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
     <script src='./dist/victor.min.js'></script>
     <script src='./dist/audio.min.js'></script>
     <script src='./dist/visual.min.js'></script>
-
+    <script src='./dist/shader.min.js'></script>
     <!--<script src='./dist/main.min.js'></script>-->
 </body>
 

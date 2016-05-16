@@ -1,5 +1,5 @@
-  let canvas = document.querySelector('#mainCanvas');
-  let ctx = canvas.getContext('2d');
+  var canvas = document.querySelector('#texture');
+  var ctx = canvas.getContext('2d');
   var a = {
       x: 5
       , y: 5
@@ -233,7 +233,7 @@
   function moveConvergePoints() {
 
       for (var i = 0; i < convPoints.length; i++) {
-          if (convPoints[i].converged < 60) {
+          if (convPoints[i].converged < 80) {
 
               var conv = convPoints[i].converged
                   //console.log(conv)
